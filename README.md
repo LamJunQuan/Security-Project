@@ -5,6 +5,7 @@ Before starting the project:
         2. Place it in your C drive , the path should be like this C:\key\...
 
 Sherman:
+
     HTTPS:
         Step 1: Download Ngrok from www.ngrok.com and follow the installation steps to set up ngrok.exe.
         Step 2: Comment out lines 1824 to 1826.
@@ -39,6 +40,7 @@ Sherman:
             encrypted_email = f.encrypt(email_bytes).decode()
 
 Tim Feng:
+
     OTP phone
         1. Login to any account
         2. In the choice page, chose the phone method to verify.
@@ -67,6 +69,7 @@ Tim Feng:
         2. You will need to check if you are a bot, by doing the captcha.
 
 Shu Jie:
+
     OTP Email:
         Step 1: The user begins by signing in to their account.
         Step 2: On the choice page, the user selects the email OTP option.
@@ -100,6 +103,7 @@ Shu Jie:
         Step 5: If the user attempts to log in with an expired password, they will be forced to reset it using an email OTP.
 
 Jun Quan:
+
     Face Recognition:
         1. Login to any account
         2. Go to profile
@@ -107,6 +111,7 @@ Jun Quan:
         4. logout
         5. Make sure that Sherman's HTTPS application is not running
         6. In the login Page, press the Face button
+        
     Input Validation:
         Sanitising: Remove any none related characters
         Validation:
@@ -117,6 +122,7 @@ Jun Quan:
         Encoding: Encode all special characters
         Testing:
             Type anything you want in any text field
+            
     Logging & Monitoring:
         1. Login through any account
         2. Go to logs
