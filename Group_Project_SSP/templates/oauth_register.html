@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>OAuth Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+</head>
+<body>
+    <div class="register">
+        <h1>OAuth Registration</h1>
+        <div class="links">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('oauth_register') }}" class="active">Register</a>
+        </div>
+        <form method="post" action="{{ url_for('oauth_register') }}" autocomplete="off">
+            {{ form.hidden_tag() }}
+            <div>
+                <label for="username">
+                    <i class="fas fa-user"></i>
+                </label>
+                <div class="error-message">
+                    {{ form.username(class="form-control", placeholder="Username") }}
+                    {% for error in form.username.errors %}
+                        <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <label for="password">
+                    <i class="fas fa-lock"></i>
+                </label>
+                {{ form.password(class="form-control", placeholder="Password") }}
+                <br>
+                <div class="error-message">
+                    {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+            <div>
+                <label for="reenter_password">
+                    <i class="fas fa-lock"></i>
+                </label>
+                {{ form.reenter_password(class="form-control", placeholder="Re-enter Password") }}
+                {% for error in form.reenter_password.errors %}
+                <span style="color: red;">{{ error }}</span>
+                {% endfor %}
+            </div>
+            <div>
+                <label for="email">
+                    <i class="fas fa-envelope"></i>
+                </label>
+                <!-- The email field is displayed but readonly -->
+                <input type="text" class="form-control" value="{{ form.email.data }}" placeholder="Email" readonly>
+            </div>
+            <div>
+                <label for="phone_number">
+                    <i class="fas fa-phone"></i>
+                </label>
+                <!-- The phone number field is displayed but readonly -->
+                <input type="text" class="form-control" value="{{ form.phone_number.data }}" placeholder="Phone Number" readonly>
+            </div>
+            <div>
+                <div class="msg">{{ msg }}</div>
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+    </div>
+</body>
+</html>

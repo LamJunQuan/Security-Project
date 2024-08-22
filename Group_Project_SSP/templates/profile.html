@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profiles.css') }}">
+
+<div class="profile-container">
+    <h2 class="profile-title">Profile Page</h2>
+
+    <div class="account-details">
+        <h3>Account Details</h3>
+        <table class="account-table">
+            <tr>
+                <td>Username:</td>
+                <td>{{ account['username'] }}</td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td>{{ decrypted_email }}</td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td>{{ account['phone_number'] }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="notifications-box">
+        <form method="POST" action="{{ url_for('profile') }}">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.email_notifications.label }}
+                {{ form.email_notifications(class='email-notifications-checkbox') }}
+
+            <button type="submit" class="btn-email">Save Changes</button></div>
+            <div class="msg">{{ msg1 }}</div>
+        </form>
+    </div>
+
+    <div class="face-upload-box">
+        <form action="{{ url_for('add_face') }}" method="post" enctype="multipart/form-data">
+            <label for="face">Submit your face for Facial Recognition login:</label>
+            <input type="file" id="face" name="face" accept="image/*">
+            <button class="btn1 btn-success"><i class="far fa-image"></i></button>
+            <div class="msg">{{ msg }}</div>
+        </form>
+    </div>
+</div>
+{% endblock %}

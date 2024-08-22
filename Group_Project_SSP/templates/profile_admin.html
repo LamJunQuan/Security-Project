@@ -1,0 +1,47 @@
+{% extends 'admin_nvbar.html' %}
+{% block title %} Profile {% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profiles.css') }}">
+<h2 class="profile-title">Profile Page</h2>
+<div class="profile-container">
+    <div class="account-details">
+        <h3>Account Details</h3>
+        <table class="account-table">
+            <tr>
+                <td><strong>Username:</strong></td>
+                <td>{{ account['username'] }}</td>
+            </tr>
+            <tr>
+                <td><strong>Email:</strong></td>
+                <td>{{ decrypted_email }}</td>
+            </tr>
+            <tr>
+                <td><strong>Phone Number:</strong></td>
+                <td>{{ account['phone_number'] }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="notifications-box">
+        <form method="post">
+            <div class="form-group">
+                <input type="checkbox" id="email_notifications" name="email_notifications" {% if account['email_notifications'] %}checked{% endif %}>
+                <label for="email_notifications">Enable Email Notifications</label>
+
+            <button class="btn1">Save Changes</button></div>
+            <div class="msg">{{ msg1 }}</div>
+        </form>
+    </div>
+
+    <div class="face-upload-box">
+        <form action="{{ url_for('add_face_admin') }}" method="post" enctype="multipart/form-data">
+            <label for="face">Submit your face for Facial Recognition login:</label>
+            <div class="form-group">
+                <input type="file" id="face" name="face" accept="image/*">
+            </div>
+            <button class="btn1"><i class="far fa-image"></i> Upload Image</button>
+            <div class="msg">{{ msg }}</div>
+        </form>
+    </div>
+</div>
+{% endblock %}

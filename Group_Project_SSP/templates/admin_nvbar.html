@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body class="loggedin">
+<nav class="navtop">
+    <div>
+        <h1>Laundromat</h1>
+
+        {% if 'jwt' in request.cookies %}
+            <a href="{{ url_for('admin_home') }}"><i class="fas fa-home"></i>Admin Home</a>
+
+            {% if account.is_admin == 2 %}
+                <a href="{{ url_for('admin_level_1') }}"><i class="fas fa-file-alt"></i>Admin Level 1</a>
+                <a href="{{ url_for('profile_admin') }}"><i class="fas fa-home"></i>Profile</a>
+            {% elif account.is_admin == 3 %}
+                <a href="{{ url_for('admin_level_2') }}"><i class="fas fa-file-alt"></i>Admin Level 2</a>
+                <a href="{{ url_for('profile_admin') }}"><i class="fas fa-home"></i>Profile</a>
+            {% elif account.is_admin == 4 %}
+                <a href="{{ url_for('admin_level_3') }}"><i class="fas fa-file-alt"></i>Admin Level 3</a>
+                <a href="{{ url_for('profile_admin') }}"><i class="fas fa-home"></i>Profile</a>
+            {% elif account.is_admin == 5 %}
+                <a href="{{ url_for('admin_level_4') }}"><i class="fas fa-file-alt"></i>Admin Level 4</a>
+                <a href="{{ url_for('profile_admin') }}"><i class="fas fa-home"></i>Profile</a>
+            {% elif account.is_admin == 6 %}
+                <a href="{{ url_for('super_admin') }}"><i class="fas fa-file-alt"></i>Super Admin</a>
+                <a href="{{ url_for('profile_admin') }}"><i class="fas fa-home"></i>Profile</a>
+                <a href="{{ url_for('display_logs_admin') }}"><i class="fas fa-file-alt"></i>Logs</a>
+            {% endif %}
+            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+
+        {% else %}
+            <a href="{{ url_for('home') }}"><i class="fas fa-home"></i>Home</a>
+        {% endif %}
+    </div>
+</nav>
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

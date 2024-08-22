@@ -1,0 +1,164 @@
+{% extends 'admin_nvbar.html' %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<style>
+    /* General Body Styling */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+    }
+
+    /* Navbar Styling */
+    .navbar {
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: #007bff;
+        border-radius: 8px;
+    }
+
+    .navbar .navbar-brand,
+    .navbar .nav-link {
+        color: white;
+    }
+
+    .navbar .navbar-text {
+        color: #e7e7e7;
+    }
+
+    /* Title Styling */
+    h2 {
+        color: #343a40;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Table Styling */
+    .table {
+        width: 100%;
+        margin: 0 auto;
+        border-collapse: collapse;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th,
+    .table td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    .table tr:hover {
+        background-color: #e9ecef;
+    }
+
+    /* Button Styling */
+    .btn {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-success:hover {
+        background-color: #218838;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        color: black;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .navbar {
+            flex-direction: column;
+        }
+
+        .table {
+            font-size: 14px;
+        }
+    }
+</style>
+
+<h2>Users List</h2>
+<div>
+    {% if 'jwt' in request.cookies %}
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for acc in accounts %}
+                <tr>
+                    <td>{{ acc.id }}</td>
+                    <td>{{ acc.username }}</td>
+                    <td>{{ acc.decrypted_email }}</td>
+                    <td>{{ acc.admin_level_desc }}</td>
+                    <td>
+                        <a href="{{ url_for('view_user', user_id=acc.id) }}" class="btn btn-success">View</a>
+                        <a href="{{ url_for('edit_user', user_id=acc.id) }}" class="btn btn-primary">Edit</a>
+                        <a href="{{ url_for('change_password', user_id=acc.id) }}" class="btn btn-warning">Change Password</a>
+                        <a href="{{ url_for('delete_user', user_id=acc.id) }}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h1 class="text-center">Hello, you are not logged in.</h1>
+        <div class="text-center">
+            <form action="{{ url_for('login') }}" method="get">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

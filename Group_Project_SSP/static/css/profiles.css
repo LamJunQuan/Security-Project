@@ -1,0 +1,65 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.account-details {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 60%;
+}
+
+.notifications-box {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.face-upload-box {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    width: 60%;
+}
+
+.btn1 {
+    padding: 10px 20px;
+    background-color: #3274d6;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+    border-radius: 50px;
+}
+
+.btn1:hover {
+    background-color: #2868c7;
+}
+
+.btn-email {
+    padding: 10px 20px;
+    background-color: #3274d6;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #ffffff;
+    transition: background-color 0.2s;
+    border-radius: 50px;
+}
+
+.btn-email:hover {
+    background-color: #2868c7;
+}
+
+.email-notifications-checkbox {
+    margin-right: 15px; /* Space between the checkbox and button */
+}

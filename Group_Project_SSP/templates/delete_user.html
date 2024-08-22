@@ -1,0 +1,81 @@
+{% extends 'admin_nvbar.html' %}
+{% block title %}Delete User{% endblock %}
+{% block content %}
+<style>
+    /* Style for Delete User Page */
+    body {
+        background-color: #f8f9fa; /* Light gray background */
+        font-family: Arial, sans-serif;
+    }
+
+    h2 {
+        color: #dc3545; /* Bootstrap's danger color */
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 30px;
+        color: #333; /* Dark gray color for text */
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center form elements */
+    }
+
+    button.btn-danger {
+        background-color: #dc3545; /* Bootstrap's danger button color */
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    button.btn-danger:hover {
+        background-color: #c82333; /* Darker red on hover */
+    }
+
+    a.btn-secondary {
+        background-color: #6c757d; /* Bootstrap's secondary button color */
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s;
+    }
+
+    a.btn-secondary:hover {
+        background-color: #5a6268; /* Darker gray on hover */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+        h2 {
+            font-size: 1.5em;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        button, a {
+            width: 100%; /* Full width on small screens */
+        }
+    }
+</style>
+
+<h2>Delete User: {{ account['username'] }}</h2>
+<p>Are you sure you want to delete this user? This action cannot be undone.</p>
+<form action="{{ url_for('delete_user', user_id=account['id']) }}" method="POST">
+    <button type="submit" class="btn btn-danger">Delete User</button>
+    <a href="javascript:void(0);" class="btn btn-secondary" onclick="window.history.back();">Back</a>
+</form>
+{% endblock %}

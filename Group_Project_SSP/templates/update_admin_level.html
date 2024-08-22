@@ -1,0 +1,19 @@
+{% extends 'admin_nvbar.html' %}
+{% block title %}Update Admin Level{% endblock %}
+{% block content %}
+<h2>Update Admin Level for {{ account['username'] }}</h2>
+<form action="{{ url_for('update_admin_level', user_id=account['id']) }}" method="POST">
+    <div class="form-group">
+        <label for="admin_level">Select Admin Level:</label>
+        <select name="admin_level" id="admin_level" class="form-control" required>
+            <option value="1">1 - Normal User</option>
+            <option value="2">2 - Can View</option>
+            <option value="3">3 - Can View and Edit</option>
+            <option value="4">4 - Can View, Edit, and Change Password</option>
+            <option value="5">5 - Can View, Edit, Change Password, and Delete</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Update Level</button>
+    <a href="{{ url_for('super_admin') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'admin_nvbar.html' %}
+{% block title %} Logging {% endblock %}
+{% block content %}
+    <h1>User Logs</h1>
+    <table border="1">
+        <tr>
+            <th>Action</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for log in logs %}
+        <tr style="background-color: {{ log[2] }}">
+            <td>{{ log[0] }}</td>
+            <td>{{ log[1] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
